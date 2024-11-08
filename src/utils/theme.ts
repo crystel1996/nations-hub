@@ -43,7 +43,7 @@ const theme = createTheme({
       },
       body1: {
         fontSize: '1rem',
-        color: COLOR.slateBlack, 
+        color: COLOR.cloudWhite, 
       },
       body2: {
         fontSize: '0.875rem',

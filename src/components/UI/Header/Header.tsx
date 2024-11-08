@@ -22,7 +22,7 @@ const Header: FC<HeaderComponentInterface> = (props) => {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main }}>
+    <AppBar position="fixed" sx={{ backgroundColor: theme.palette.primary.main }}>
       <Toolbar>
         {/* Logo or Brand Name */}
         <Typography 
