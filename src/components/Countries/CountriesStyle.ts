@@ -2,7 +2,7 @@ import { SxProps } from "@mui/material";
 
 const CountriesStyle: Record<string,SxProps> = {
     container: {
-        padding: 2
+        padding: '12px 0'
     }
 }
 

@@ -1,8 +1,9 @@
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import HomeComponent from "@nations-hub/components/Home/Home";
-import Header from "@nations-hub/components/UI/Header/Header";
+import MainLayout from "@nations-hub/components/Layout/MainLayout/MainLayout";
 import { HeaderComponentInterface } from "@nations-hub/components/UI/Header/interface";
 import MENU from "@nations-hub/pages/Home/Constant/menu";
+import HomeStyle from "@nations-hub/pages/Home/HomeStyle";
 
 const Home = () => {
 
@@ -10,12 +11,11 @@ const Home = () => {
         menus: MENU
     };
 
-    return <>
-        <Header menus={props.menus} />
-        <Container>
+    return <MainLayout menus={props.menus}>
+        <Box sx={HomeStyle}>
             <HomeComponent />
-        </Container>
-    </>
+        </Box>
+    </MainLayout>
 }
 
 export default Home;

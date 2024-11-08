@@ -11,6 +11,6 @@ export interface FetchAllCountriesDataInterface {
 
 export type FetchAllCountriesInterface = {
     response: { countries: FetchAllCountriesDataInterface[]; totalCountries: number },
-    argument: {  page: number, name?: string},
+    argument?: any,
     failure: {  rejectValue: string}
 }

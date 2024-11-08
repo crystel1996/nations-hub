@@ -1,16 +1,17 @@
-import Header from "@nations-hub/components/UI/Header/Header";
 import { HeaderComponentInterface } from "@nations-hub/components/UI/Header/interface";
 import MENU from "@nations-hub/pages/Countries/Constant/menu";
 import { fetchCountries } from "@nations-hub/store/action/country/fetchCountries.action";
 import { nextCountryPage } from "@nations-hub/store/reducer/country/country.reducer";
 import { CountryReducerStateInterface } from "@nations-hub/store/reducer/country/interface";
 import { AppDispatch } from "@nations-hub/store/store";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import CountriesComponent from "@nations-hub/components/Countries/Countries";
-import { Container } from "@mui/material";
 import { CountriesComponentInterface } from "@nations-hub/components/Countries/interface";
+import MainLayout from "@nations-hub/components/Layout/MainLayout/MainLayout";
+import { Box } from "@mui/material";
+import { CountryStyle } from "@nations-hub/pages/Countries/CountryStyle";
 
 const Countries = () => {
 
@@ -20,15 +21,18 @@ const Countries = () => {
     const queryParams = new URLSearchParams(location.search);
     const countryName = queryParams.get('name');
 
+    const [listCountries, setListCountries] = useState<CountriesComponentInterface['countries']>([]);
+
     const dispatch = useDispatch<AppDispatch>();
     const getCountries: CountryReducerStateInterface = useSelector((state: any) => state.countries);
 
     useEffect(() => {
         const handleFetchCountries = () => {
-            if(getCountries.status === 'idle') {
-                isApiFetchCalled.current = true;
-                dispatch(fetchCountries({page: getCountries.page, name: countryName ?? ''}));
+            isApiFetchCalled.current = true;
+            if (getCountries.status === 'idle') {
+                dispatch(fetchCountries({}));
             }
+            
         }
         !isApiFetchCalled?.current && handleFetchCountries();
     }, [getCountries.page, dispatch, getCountries.status]);
@@ -52,16 +56,15 @@ const Countries = () => {
         })
     }, [getCountries.countries]);
 
-    return <>
-        <Header menus={props.menus} />
-        <Container>
+    return <MainLayout menus={props.menus}>
+        <Box sx={CountryStyle.content}>
             <CountriesComponent 
                 loading={getCountries.status === 'loading'} 
                 countries={countries} 
                 onLoadMore={loadMoreCountries}
             />
-        </Container>
-    </>
+        </Box>
+    </MainLayout>
 }
 
 export default Countries;

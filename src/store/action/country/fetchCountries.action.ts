@@ -7,16 +7,12 @@ export const fetchCountries = createAsyncThunk<
   FetchAllCountriesInterface['failure']
 >(
     'countries/fetchCountries',
-    async (payload, { rejectWithValue }) => {
+    async (_, { rejectWithValue }) => {
       try {
         const api = import.meta.env.VITE_FETCH_ALL_COUNTRIES;
         const response = await fetch(api);
         const data = await response.json();
-
-        console.log('data', data);
-
-        const paginatedData = data.slice(0, payload.page * 10); // Pagination logic
-        return { countries: paginatedData, totalCountries: data.length };
+        return { countries: data, totalCountries: data.length };
       } catch (error: any) {
         return rejectWithValue(error?.message);
       }
