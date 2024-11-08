@@ -1,7 +1,7 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, TextField } from "@mui/material";
-import { SearchFormInterface } from "@nations-hub/components/UI/Form/Search/interface";
+import { SearchFormDataInterface, SearchFormInterface } from "@nations-hub/components/UI/Form/Search/interface";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import {SearchFormInputStyle, SearchFormStyle, SearchFormSubmitStyle} from "@nations-hub/components/UI/Form/Search/SearchFormStyle";
@@ -11,7 +11,11 @@ const SearchForm: FC<SearchFormInterface> = (props) => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<SearchFormDataInterface>({
+        defaultValues: {
+            search: props.defaultValue ?? ''
+        }
+    });
 
     const onSubmit = (data: any) => {
         props.onSubmit(data?.search);

@@ -8,6 +8,8 @@ import { AppDispatch } from "@nations-hub/store/store";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import CountriesComponent from "@nations-hub/components/Countries/Countries";
+import { Container } from "@mui/material";
 
 const Countries = () => {
 
@@ -40,7 +42,9 @@ const Countries = () => {
 
     return <>
         <Header menus={props.menus} />
-        
+        <Container>
+            <CountriesComponent />
+        </Container>
     </>
 }
 
