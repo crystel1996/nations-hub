@@ -6,7 +6,7 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import {SearchFormInputStyle, SearchFormStyle, SearchFormSubmitStyle} from "@nations-hub/components/UI/Form/Search/SearchFormStyle";
 
-const SearchForm: FC<SearchFormInterface> = () => {
+const SearchForm: FC<SearchFormInterface> = (props) => {
 
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -14,7 +14,7 @@ const SearchForm: FC<SearchFormInterface> = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        props.onSubmit(data?.search);
     };
 
     return <Box
