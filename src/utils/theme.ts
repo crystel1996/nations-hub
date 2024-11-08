@@ -77,6 +77,39 @@ const theme = createTheme({
           },
         },
       },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            '& fieldset': {
+              borderColor: COLOR.globalGreen
+            },
+            '&:hover fieldset': {
+              borderColor: COLOR.globalGreen,
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: COLOR.globalGreen,
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: COLOR.globalGreen,
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: COLOR.globalGreen,
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: COLOR.globalGreen,
+            },
+            '& .MuiOutlinedInput-input': {
+              color: COLOR.white,
+            },
+            '& .MuiInputLabel-root': {
+              color: COLOR.white,
+            },
+            '&.Mui-focused .MuiInputLabel-root': {
+              color: COLOR.white,
+            },
+          }
+        }
+      }
     },
   });
   
