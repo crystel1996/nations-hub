@@ -10,9 +10,11 @@ import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import { HeaderComponentInterface } from '@nations-hub/components/UI/Header/interface';
+import { useTheme } from '@mui/material';
 
 const Header: FC<HeaderComponentInterface> = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const theme = useTheme();
 
   // Toggle the drawer open/close state
   const toggleDrawer = (open: boolean) => () => {
@@ -20,26 +22,32 @@ const Header: FC<HeaderComponentInterface> = (props) => {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#2E3A59' }}>
+    <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main }}>
       <Toolbar>
         {/* Logo or Brand Name */}
-        <Typography variant="h6" sx={{ flexGrow: 1, display: { md: 'block' } }}>
+        <Typography 
+          variant="h6" 
+          sx={{ 
+            flexGrow: 1, 
+            display: { md: 'block' },
+            color: theme.palette.text.secondary,
+          }}
+        >
           Nations Hub
         </Typography>
 
         {/* Desktop Menu */}
-        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          {props.menus.map((menu) => (
-            <ListItem component="a" key={menu.label}>
-              <Link
-                href={menu.link}
-                color="inherit"
-                underline="none"
-                sx={{ width: '100%', padding: '0.5rem 1rem', display: 'block' }}
-              >
-                {menu.label}
-              </Link>
-          </ListItem>
+        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {(props.menus || []).map((menu) => (
+            <Link
+              key={menu.link}
+              href={menu.label}
+              color={theme.palette.secondary.main}
+              underline="none"
+              sx={{ margin: '0 1rem', fontSize: '1rem', fontWeight: 500 }}
+            >
+              {menu.label}
+            </Link>
           ))}
         </Box>
 
@@ -64,17 +72,18 @@ const Header: FC<HeaderComponentInterface> = (props) => {
             role="presentation"
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
+            bgcolor={theme.palette.background.default}
           >
             <List>
-              {props.menus.map((menu) => (
-                <ListItem component="a" key={menu.label}>
+              {(props.menus || []).map((item) => (
+                <ListItem key={item.label} disablePadding>
                   <Link
-                    href={menu.link}
-                    color="inherit"
+                    href={item.link}
+                    color={theme.palette.text.primary}
                     underline="none"
                     sx={{ width: '100%', padding: '0.5rem 1rem', display: 'block' }}
                   >
-                    {menu.label}
+                    {item.label}
                   </Link>
                 </ListItem>
               ))}
