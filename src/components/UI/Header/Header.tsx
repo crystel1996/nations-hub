@@ -72,7 +72,6 @@ const Header: FC<HeaderComponentInterface> = (props) => {
             role="presentation"
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
-            bgcolor={theme.palette.background.default}
           >
             <List>
               {(props.menus || []).map((item) => (

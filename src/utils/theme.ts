@@ -20,7 +20,7 @@ const theme = createTheme({
       },
       background: {
         default: COLOR.cloudWhite, 
-        paper: COLOR.saharaBeige,  
+        paper: COLOR.earthBlue,  
       },
       text: {
         primary: COLOR.slateBlack, 
@@ -109,7 +109,20 @@ const theme = createTheme({
             },
           }
         }
-      }
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#2a353f', // Customize with your background color
+            color: COLOR.cloudWhite, // Text color inside the card
+            border: COLOR.stoneGray, // Border color from the secondary color
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', // Subtle shadow
+            '&:hover': {
+              boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.3)', // Hover effect
+            },
+          },
+        },
+      },
     },
   });
   
