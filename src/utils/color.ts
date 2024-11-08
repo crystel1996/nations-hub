@@ -8,7 +8,9 @@ const COLOR = {
     softCoral: '#FF8A65',
     cloudWhite: '#FAFAFA',
     stoneGray: '#BDBDBD',
-    slateBlack: '#2C3E50'
+    slateBlack: '#2C3E50',
+    white: '#FFFFFF',
+    darkGreen: '#388E3C'
 }
 
 export default COLOR;
