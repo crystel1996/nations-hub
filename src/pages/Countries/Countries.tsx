@@ -5,11 +5,12 @@ import { fetchCountries } from "@nations-hub/store/action/country/fetchCountries
 import { nextCountryPage } from "@nations-hub/store/reducer/country/country.reducer";
 import { CountryReducerStateInterface } from "@nations-hub/store/reducer/country/interface";
 import { AppDispatch } from "@nations-hub/store/store";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import CountriesComponent from "@nations-hub/components/Countries/Countries";
 import { Container } from "@mui/material";
+import { CountriesComponentInterface } from "@nations-hub/components/Countries/interface";
 
 const Countries = () => {
 
@@ -40,10 +41,25 @@ const Countries = () => {
         menus: MENU
     };
 
+    const countries: CountriesComponentInterface['countries']  = useMemo(() => {
+        return getCountries.countries.map((country) => {
+            return {
+                name: country?.name?.common,
+                flag: country?.flags?.png,
+                alpha3Code: country?.cca2,
+                capital: country?.capital?.[0]
+            }
+        })
+    }, [getCountries.countries]);
+
     return <>
         <Header menus={props.menus} />
         <Container>
-            <CountriesComponent />
+            <CountriesComponent 
+                loading={getCountries.status === 'loading'} 
+                countries={countries} 
+                onLoadMore={loadMoreCountries}
+            />
         </Container>
     </>
 }

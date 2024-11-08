@@ -1,11 +1,12 @@
 export interface FetchAllCountriesDataInterface {
     name: {
-        official: string;
+        common: string;
     };
     capital: string[];
     flags: {
         png: string;
     };
+    cca2: string;
 }
 
 export type FetchAllCountriesInterface = {
