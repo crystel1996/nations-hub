@@ -3,5 +3,17 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@nations-hub/assets/*": ["src/assets/*"],
+      "@nations-hub/components/*": ["src/components/*"],
+      "@nations-hub/pages/*": ["src/pages/*"],
+      "@nations-hub/routes/*": ["src/routes/*"],
+      "@nations-hub/services/*": ["src/services/*"],
+      "@nations-hub/store/*": ["src/store/*"],
+      "@nations-hub/utils/*": ["src/utils/*"]
+    }
+  }
 }
