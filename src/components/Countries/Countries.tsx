@@ -3,18 +3,22 @@ import CountriesStyle from "@nations-hub/components/Countries/CountriesStyle";
 import { CountriesComponentInterface } from "@nations-hub/components/Countries/interface";
 import SearchLayout from "@nations-hub/components/Layout/SearchLayout/SearchLayout";
 import CardComponent from "@nations-hub/components/UI/Card/Card";
+import Sorting from "@nations-hub/components/UI/Sorting/Sorting";
 import { FC } from "react";
 
 const Countries: FC<CountriesComponentInterface> = (props) => {
 
     return <SearchLayout>
+        {props.loading && (
+            <Box sx={CountriesStyle.loading}>
+                <CircularProgress />
+            </Box>
+        )}
         <Box sx={CountriesStyle.container}>
+            <Box py={2}>
+                <Sorting field='name' onSortData={props.onSorting} />
+            </Box>
             <Grid container spacing={2} justifyContent="center">
-                {props.loading && (
-                    <Box sx={CountriesStyle.loading}>
-                        <CircularProgress />
-                    </Box>
-                )}
                 {!props.loading && (
                     <>
                         {(props.countries || []).map((country) => (

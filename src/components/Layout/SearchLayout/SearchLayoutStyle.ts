@@ -1,3 +1,4 @@
 export const SearchLayoutStyle = {
-    margin: '20px 0',
+    margin: '20px',
+    width: '100%'
 }

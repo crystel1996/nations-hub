@@ -9,7 +9,7 @@ export const fetchCountries = createAsyncThunk<
     'countries/fetchCountries',
     async (_, { rejectWithValue }) => {
       try {
-        const api = import.meta.env.VITE_FETCH_ALL_COUNTRIES;
+        const api = `${import.meta.env.VITE_FETCH_ALL_COUNTRIES}`;
         const response = await fetch(api);
         const data = await response.json();
         return { countries: data, totalCountries: data.length };

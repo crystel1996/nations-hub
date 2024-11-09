@@ -1,3 +1,5 @@
+import { SortingInterface } from "@nations-hub/components/UI/Sorting/interface";
+
 export interface CountriesComponentInterface {
     loading: boolean;
     countries: {
@@ -8,4 +10,5 @@ export interface CountriesComponentInterface {
     }[];
     onLoadMore: () => void;
     isAllDisplay: boolean;
+    onSorting: SortingInterface['onSortData'];
 }
