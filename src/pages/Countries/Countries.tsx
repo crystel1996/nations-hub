@@ -1,8 +1,8 @@
 import { HeaderComponentInterface } from "@nations-hub/components/UI/Header/interface";
 import MENU from "@nations-hub/pages/Countries/Constant/menu";
 import { fetchCountries } from "@nations-hub/store/action/country/fetchCountries.action";
-import { nextCountryPage } from "@nations-hub/store/reducer/country/country.reducer";
-import { CountryReducerStateInterface } from "@nations-hub/store/reducer/country/interface";
+import { nextCountryPage } from "@nations-hub/store/reducer/country/countries.reducer";
+import { CountriesReducerStateInterface } from "@nations-hub/store/reducer/country/interface";
 import { AppDispatch } from "@nations-hub/store/store";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ const Countries = () => {
     });
 
     const dispatch = useDispatch<AppDispatch>();
-    const getCountries: CountryReducerStateInterface = useSelector((state: any) => state.countries);
+    const getCountries: CountriesReducerStateInterface = useSelector((state: any) => state.countries);
 
     useEffect(() => {
         const handleFetchCountries = () => {

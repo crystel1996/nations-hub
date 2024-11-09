@@ -14,3 +14,9 @@ export type FetchAllCountriesInterface = {
     argument?: any,
     failure: {  rejectValue: string}
 }
+
+export interface FetchCountryInterface {
+    response: FetchAllCountriesDataInterface;
+    argument: { alphaCode: string };
+    failure: { rejectValue: string };
+}
