@@ -17,7 +17,13 @@ const Country: FC<CountryComponentInterface> = (props) => {
     const items = [
         {label: 'Name', value: props.name},
         {label: 'Continents', value: props.continents},
-        {label: 'Population', value: props.population}
+        {label: 'Population', value: props.population},
+        {label: 'Area', value: props.area},
+        {label: 'Regions', value: props.region},
+        {label: 'Subregion', value: props.subregion},
+        {label: 'Currency', value: props.currency},
+        {label: 'Resident', value: props.resident},
+        {label: 'Languages', value: props.language}
     ];
 
     return <Box sx={CountryStyle.container}>

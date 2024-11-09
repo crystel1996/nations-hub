@@ -24,14 +24,14 @@ export interface FetchCountryDetailInterface {
         }
     };
     region: string;
-    subregions: string;
+    subregion: string;
     languages: {
         [key: string]: string;
     };
     latlng: number[];
     area: number;
     demonyms: {
-        [key: string]: {
+        eng: {
             [key: string]: string;
         }
     };

@@ -47,6 +47,21 @@ const Country: FC<CountryInterface> = () => {
     const countryComponentProps: CountryComponentInterface = useMemo(() => {
 
         const country = getCountry.country?.[0];
+        
+        let currency: CountryComponentInterface['currency'] = '';
+        Object.keys(country?.currencies ?? {}).forEach((currencyKey) => {
+            currency += `${country?.currencies?.[currencyKey]?.name ?? ''} ${country?.currencies?.[currencyKey]?.symbol ? `(${country?.currencies[currencyKey]?.symbol})`: ''}`
+        });
+
+        let resident: CountryComponentInterface['resident'] = '';
+        Object.keys(country?.demonyms?.eng ?? {}).forEach((demonym) => {
+            resident += `${demonym ? `(${demonym}):`: ''} ${country?.demonyms?.eng?.[demonym] ?? ''}  `;
+        });
+
+        let language: CountryComponentInterface['language'] = '';
+        Object.keys(country?.languages ?? {}).forEach((item) => {
+            language += `${country?.languages?.[item] ?? ''}  `;
+        });
 
         return {
             flag: {
@@ -55,11 +70,15 @@ const Country: FC<CountryInterface> = () => {
             },
             name: country?.name?.common ?? '-',
             continents: country?.continents?.[0] ?? '-',
-            population: country?.population ?? 0
+            population: country?.population ?? 0,
+            area: country?.area ?? 0,
+            region: country?.region ?? '-',
+            subregion: country?.subregion ?? '-',
+            currency: currency,
+            resident,
+            language
         }
     }, [getCountry.country]);
-
-    console.log('country', countryComponentProps, getCountry.country);
 
     return <MainLayout {...headerProps}>
         <Box sx={CountryStyle.container}>

@@ -6,4 +6,10 @@ export interface CountryComponentInterface {
     name: string;
     continents: string;
     population: number;
+    area:number;
+    region: string;
+    subregion: string;
+    currency: string;
+    resident: string;
+    language: string;
 }
