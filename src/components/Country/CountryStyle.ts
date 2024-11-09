@@ -9,7 +9,9 @@ const CountryStyle: Record<string, SxProps> = {
         overflowY: 'auto'
     },
     detail: {
-        
+        height: '200px',
+        borderRadius: '14px',
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.08)'
     }
 }
 

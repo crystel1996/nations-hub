@@ -4,7 +4,7 @@ import { HeaderComponentInterface } from "@nations-hub/components/UI/Header/inte
 import MENU from "@nations-hub/pages/Country/Constant/menu";
 import CountryStyle from "@nations-hub/pages/Country/CountryStyle";
 import { CountryInterface } from "@nations-hub/pages/Country/interface";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import CountryComponent from "@nations-hub/components/Country/Country";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@nations-hub/store/store";
@@ -12,6 +12,7 @@ import { CountryReducerStateInterface } from "@nations-hub/store/reducer/country
 import { fetchCountry } from "@nations-hub/store/action/country/fetchCountry.action";
 import { useNavigate, useParams } from "react-router-dom";
 import { COUNTRIES_ROUTE } from "@nations-hub/pages/Countries/routes";
+import { CountryComponentInterface } from "@nations-hub/components/Country/interface";
 
 const Country: FC<CountryInterface> = () => {
 
@@ -39,13 +40,30 @@ const Country: FC<CountryInterface> = () => {
         handleFetchCountries();
     }, [dispatch, getCountry.status, code]);
 
-    const props: HeaderComponentInterface = {
+    const headerProps: HeaderComponentInterface = {
         menus: MENU
     };
 
-    return <MainLayout menus={props.menus}>
+    const countryComponentProps: CountryComponentInterface = useMemo(() => {
+
+        const country = getCountry.country?.[0];
+
+        return {
+            flag: {
+                link: country?.flags?.png ?? '',
+                alt: country?.name?.common ?? ''
+            },
+            name: country?.name?.common ?? '-',
+            continents: country?.continents?.[0] ?? '-',
+            population: country?.population ?? 0
+        }
+    }, [getCountry.country]);
+
+    console.log('country', countryComponentProps, getCountry.country);
+
+    return <MainLayout {...headerProps}>
         <Box sx={CountryStyle.container}>
-            <CountryComponent />
+            <CountryComponent {...countryComponentProps} />
         </Box>
     </MainLayout>
 }

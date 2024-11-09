@@ -1,4 +1,4 @@
-import { FetchAllCountriesDataInterface } from "@nations-hub/store/action/country/interface";
+import { FetchAllCountriesDataInterface, FetchCountryDetailInterface } from "@nations-hub/store/action/country/interface";
 
 export interface CountriesReducerStateInterface {
     status: 'idle' | 'loading' | 'success' | 'rejected';
@@ -12,5 +12,5 @@ export interface CountriesReducerStateInterface {
 export interface CountryReducerStateInterface {
     status: 'idle' | 'loading' | 'success' | 'rejected';
     error: string | null;
-    country: FetchAllCountriesDataInterface | null;
+    country: FetchCountryDetailInterface[] | null;
 }

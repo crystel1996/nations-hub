@@ -9,6 +9,44 @@ export interface FetchAllCountriesDataInterface {
     cca2: string;
 }
 
+export interface FetchCountryDetailInterface {
+    name: {
+        common: string;
+    };
+    capital: string[];
+    flags: {
+        png: string;
+    };
+    currencies: {
+        [key: string]: {
+            name: string;
+            symbol: string;
+        }
+    };
+    region: string;
+    subregions: string;
+    languages: {
+        [key: string]: string;
+    };
+    latlng: number[];
+    area: number;
+    demonyms: {
+        [key: string]: {
+            [key: string]: string;
+        }
+    };
+    maps: {
+        googleMaps: string;
+        openStreetMaps: string;
+    };
+    population: number;
+    timezones: string[];
+    continents: string[];
+    capitalInfo: {
+        latlng: number[]
+    }
+}
+
 export type FetchAllCountriesInterface = {
     response: { countries: FetchAllCountriesDataInterface[]; totalCountries: number },
     argument?: any,
@@ -16,7 +54,7 @@ export type FetchAllCountriesInterface = {
 }
 
 export interface FetchCountryInterface {
-    response: FetchAllCountriesDataInterface;
+    response: FetchCountryDetailInterface[];
     argument: { alphaCode: string };
     failure: { rejectValue: string };
 }

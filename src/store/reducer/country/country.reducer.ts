@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: CountryReducerStateInterface = {
     status: 'idle',
     error: null,
-    country: null
+    country: []
 }
 
 const countrySlice = createSlice({
