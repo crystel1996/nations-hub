@@ -77,8 +77,6 @@ const Countries = () => {
         menus: MENU
     };
 
-    console.log('getCountries', getCountries.countries.length, getCountries.countriesPerPage)
-
     return <MainLayout menus={props.menus}>
         <Box sx={CountryStyle.content}>
             <CountriesComponent 

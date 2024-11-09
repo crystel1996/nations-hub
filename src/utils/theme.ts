@@ -132,7 +132,25 @@ const theme = createTheme({
             color: COLOR.globalGreen,
           }
         }
-      }
+      },
+      MuiCssBaseline: {
+        styleOverrides: {
+          '::-webkit-scrollbar': {
+            width: '8px',
+            height: '8px',
+          },
+          '::-webkit-scrollbar-track': {
+            backgroundColor: COLOR.earthBlue,
+          },
+          '::-webkit-scrollbar-thumb': {
+            backgroundColor: COLOR.globalGreen, // lighter shade for contrast
+            borderRadius: '4px',
+          },
+          '::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: COLOR.globalGreen,
+          },
+        },
+      },
     },
   });
   

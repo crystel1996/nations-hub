@@ -1,15 +1,20 @@
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { MainLayoutInterface } from "@nations-hub/components/Layout/MainLayout/interface";
 import MainLayoutStyle from "@nations-hub/components/Layout/MainLayout/MainLayoutStyle";
+import BackToTop from "@nations-hub/components/UI/BackToTop/BackToTop";
 import Header from "@nations-hub/components/UI/Header/Header";
-import { FC } from "react";
+import { FC, useRef } from "react";
 
 const MainLayout: FC<MainLayoutInterface> = (props) => {
+
+    const mainLayoutRef = useRef(null);
+
     return <>
         <Header menus={props.menus} />
-        <Container sx={MainLayoutStyle.container}>
+        <Box sx={MainLayoutStyle.container} ref={mainLayoutRef}>
             {props.children}
-        </Container>
+        </Box>
+        <BackToTop composantRef={mainLayoutRef} />
     </>
 }
 

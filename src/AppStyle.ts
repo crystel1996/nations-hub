@@ -5,7 +5,8 @@ const AppStyle: SxProps = {
     backgroundColor: COLOR.slateBlack,
     width: '100vw',
     height: '100vh',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    overflowY: 'hidden'
 }
 
 export default AppStyle;

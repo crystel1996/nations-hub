@@ -6,6 +6,7 @@ const CardStyle: Record<string, SxProps> = {
         flexDirection: 'column',
         height: '100%',
         boxShadow: 3,
+        maxWidth: '345px',
         '&:hover': {
             boxShadow: 6,
         },
@@ -14,8 +15,10 @@ const CardStyle: Record<string, SxProps> = {
         flexGrow: 1
     },
     image: {
-        objectFit: 'fit',
-        height: '160px'
+        objectFit: 'cover',
+        backgroundSize: 'cover',
+        height: '194px',
+        width: '100%'
     },
     action: {}
 }
