@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardMedia } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia } from "@mui/material";
 import CardStyle from "@nations-hub/components/UI/Card/CardStyle";
 import { CardComponentInterface } from "@nations-hub/components/UI/Card/interface";
 import { FC } from "react";
@@ -18,14 +18,17 @@ const CardComponent: FC<CardComponentInterface> = (props) => {
             {props.content}
         </CardContent>
         {props.action && (
-            <Button
-                href={props.action.link}
-                variant="contained"
-                color="primary"
-                sx={CardStyle.action}
-            >
-                {props.action.label}
-            </Button>
+            <CardActions>
+                <Button
+                    href={props.action.link}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    sx={CardStyle.action}
+                >
+                    {props.action.label}
+                </Button>
+            </CardActions>
         )}
     </Card>
 }

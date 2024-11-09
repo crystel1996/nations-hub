@@ -11,15 +11,13 @@ const CardStyle: Record<string, SxProps> = {
         },
     },
     cardContent: {
-        //flexGrow: 1
+        flexGrow: 1
     },
     image: {
         objectFit: 'fit',
         height: '160px'
     },
-    action: {
-        //marginBottom: 2,
-    }
+    action: {}
 }
 
 export default CardStyle;

@@ -60,6 +60,9 @@ const theme = createTheme({
             '&:hover': {
               backgroundColor: COLOR.darkGreen, 
             },
+            '&:disabled': {
+              color: COLOR.cloudWhite
+            }
           },
         },
       },
@@ -123,6 +126,13 @@ const theme = createTheme({
           },
         },
       },
+      MuiCircularProgress: {
+        styleOverrides: {
+          root: {
+            color: COLOR.globalGreen,
+          }
+        }
+      }
     },
   });
   

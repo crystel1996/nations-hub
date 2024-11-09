@@ -4,7 +4,7 @@ import { fetchCountries } from "@nations-hub/store/action/country/fetchCountries
 import { nextCountryPage } from "@nations-hub/store/reducer/country/country.reducer";
 import { CountryReducerStateInterface } from "@nations-hub/store/reducer/country/interface";
 import { AppDispatch } from "@nations-hub/store/store";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import CountriesComponent from "@nations-hub/components/Countries/Countries";
@@ -12,6 +12,7 @@ import { CountriesComponentInterface } from "@nations-hub/components/Countries/i
 import MainLayout from "@nations-hub/components/Layout/MainLayout/MainLayout";
 import { Box } from "@mui/material";
 import { CountryStyle } from "@nations-hub/pages/Countries/CountryStyle";
+import { FetchAllCountriesDataInterface } from "@nations-hub/store/action/country/interface";
 
 const Countries = () => {
 
@@ -37,6 +38,35 @@ const Countries = () => {
         !isApiFetchCalled?.current && handleFetchCountries();
     }, [getCountries.page, dispatch, getCountries.status]);
 
+    useEffect(() => {
+        const handleFilterCountries = () => {
+
+            let countries: FetchAllCountriesDataInterface[] = [];
+
+            if (countryName) {
+                getCountries.countries.forEach((country) => {
+                    if (country?.name?.common?.includes(countryName)) {
+                        countries.push(country);
+                    }
+                });
+    
+            } else {
+                countries = getCountries.countries;
+            }
+
+            const lists = countries.map((country) => {
+                return {
+                    name: country?.name?.common,
+                    flag: country?.flags?.png,
+                    alpha3Code: country?.cca2,
+                    capital: country?.capital?.[0]
+                }
+            });
+            setListCountries(lists);
+        };
+        handleFilterCountries();
+    }, [getCountries.countries, countryName]);
+
     const loadMoreCountries = () => {
         dispatch(nextCountryPage());
     };
@@ -45,22 +75,11 @@ const Countries = () => {
         menus: MENU
     };
 
-    const countries: CountriesComponentInterface['countries']  = useMemo(() => {
-        return getCountries.countries.map((country) => {
-            return {
-                name: country?.name?.common,
-                flag: country?.flags?.png,
-                alpha3Code: country?.cca2,
-                capital: country?.capital?.[0]
-            }
-        })
-    }, [getCountries.countries]);
-
     return <MainLayout menus={props.menus}>
         <Box sx={CountryStyle.content}>
             <CountriesComponent 
                 loading={getCountries.status === 'loading'} 
-                countries={countries} 
+                countries={listCountries} 
                 onLoadMore={loadMoreCountries}
             />
         </Box>
