@@ -4,6 +4,7 @@ import { CountriesComponentInterface } from "@nations-hub/components/Countries/i
 import SearchLayout from "@nations-hub/components/Layout/SearchLayout/SearchLayout";
 import CardComponent from "@nations-hub/components/UI/Card/Card";
 import Sorting from "@nations-hub/components/UI/Sorting/Sorting";
+import {  COUNTRY_ROUTE_DINAMICALLY } from "@nations-hub/pages/Country/routes";
 import { FC } from "react";
 
 const Countries: FC<CountriesComponentInterface> = (props) => {
@@ -39,7 +40,7 @@ const Countries: FC<CountriesComponentInterface> = (props) => {
                                         link: country.flag
                                     }}
                                     action={{
-                                        link: `/country/${country.alpha3Code}`,
+                                        link: COUNTRY_ROUTE_DINAMICALLY(country.alpha3Code),
                                         label: 'View more'
                                     }}
                                 />
