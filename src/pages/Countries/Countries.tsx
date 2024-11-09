@@ -54,18 +54,20 @@ const Countries = () => {
                 countries = getCountries.countries;
             }
 
-            const lists = countries.map((country) => {
-                return {
-                    name: country?.name?.common,
-                    flag: country?.flags?.png,
-                    alpha3Code: country?.cca2,
-                    capital: country?.capital?.[0]
-                }
-            });
+            const lists = countries
+                .slice(0, getCountries.countriesPerPage)
+                .map((country) => {
+                    return {
+                        name: country?.name?.common,
+                        flag: country?.flags?.png,
+                        alpha3Code: country?.cca2,
+                        capital: country?.capital?.[0]
+                    }
+                });
             setListCountries(lists);
         };
         handleFilterCountries();
-    }, [getCountries.countries, countryName]);
+    }, [getCountries.countries, countryName, getCountries.countriesPerPage]);
 
     const loadMoreCountries = () => {
         dispatch(nextCountryPage());
@@ -75,12 +77,15 @@ const Countries = () => {
         menus: MENU
     };
 
+    console.log('getCountries', getCountries.countries.length, getCountries.countriesPerPage)
+
     return <MainLayout menus={props.menus}>
         <Box sx={CountryStyle.content}>
             <CountriesComponent 
                 loading={getCountries.status === 'loading'} 
                 countries={listCountries} 
                 onLoadMore={loadMoreCountries}
+                isAllDisplay={getCountries.countries.length <= getCountries.countriesPerPage}
             />
         </Box>
     </MainLayout>

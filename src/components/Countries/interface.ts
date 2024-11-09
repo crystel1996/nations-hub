@@ -7,4 +7,5 @@ export interface CountriesComponentInterface {
         capital: string;
     }[];
     onLoadMore: () => void;
+    isAllDisplay: boolean;
 }

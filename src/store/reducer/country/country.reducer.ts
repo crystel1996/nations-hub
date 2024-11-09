@@ -8,7 +8,7 @@ const initialState: CountryReducerStateInterface = {
     countries: [],
     totalCountries: 0,
     page: 1,
-    countriesPerPage: 5
+    countriesPerPage: 8
 }
 
 const countriesSlice = createSlice({
@@ -17,9 +17,11 @@ const countriesSlice = createSlice({
     reducers: {
         nextCountryPage: (state) => {
           state.page += 1;
+          state.countriesPerPage += 8;
         },
         resetCountryPage: (state) => {
           state.page = 1;
+          state.countriesPerPage = 8;
         },
     },
     extraReducers: (builder) => {

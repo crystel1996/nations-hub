@@ -46,7 +46,7 @@ const Countries: FC<CountriesComponentInterface> = (props) => {
             </Grid>
             {!props.loading && (
                 <>
-                    {props.countries.length > 0 && (
+                    {!props.isAllDisplay && (
                         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                             <Button
                                 variant="contained"
@@ -54,7 +54,7 @@ const Countries: FC<CountriesComponentInterface> = (props) => {
                                 disabled={props.loading}
                                 size="large"
                             >
-                                {props.loading ? 'Loading...' : 'Load More'}
+                                {'Load More'}
                             </Button>
                         </Box>
                     )}
