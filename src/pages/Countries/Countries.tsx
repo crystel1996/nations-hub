@@ -111,11 +111,11 @@ const Countries = () => {
     };
 
     const isAllDisplay = useMemo(() => {
-        if (getCountries.countries.length === 0) {
+        if (listCountries.length === 0) {
             return true
         }
         return getCountries.countries.length <= getCountries.countriesPerPage
-    }, [getCountries.countries.length, getCountries.countriesPerPage]);
+    }, [getCountries.countries.length, getCountries.countriesPerPage, listCountries.length]);
 
     return <MainLayout menus={props.menus}>
         <Box sx={CountryStyle.content}>
