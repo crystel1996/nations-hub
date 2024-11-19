@@ -49,6 +49,11 @@ const theme = createTheme({
         fontSize: '0.875rem',
         color: COLOR.stoneGray, 
       },
+      subtitle1: {
+        fontSize: '1.125rem',
+        fontWeight: 500,
+        color: COLOR.oceanTeal
+      }
     },
     components: {
       // Customize MUI components

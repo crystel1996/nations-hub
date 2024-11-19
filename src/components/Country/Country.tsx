@@ -2,7 +2,7 @@ import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
 import CountryStyle from "@nations-hub/components/Country/CountryStyle";
 import { CountryComponentInterface } from "@nations-hub/components/Country/interface";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Country: FC<CountryComponentInterface> = (props) => {
@@ -14,17 +14,24 @@ const Country: FC<CountryComponentInterface> = (props) => {
         navigate(-1);
     };
 
-    const items = [
-        {label: 'Name', value: props.name},
-        {label: 'Continents', value: props.continents},
-        {label: 'Population', value: props.population},
-        {label: 'Area', value: props.area},
-        {label: 'Regions', value: props.region},
-        {label: 'Subregion', value: props.subregion},
-        {label: 'Currency', value: props.currency},
-        {label: 'Resident', value: props.resident},
-        {label: 'Languages', value: props.language}
-    ];
+    const country_geography = useMemo(() => {
+        return [
+            {label: 'Name', value: props.name},
+            {label: 'Continents', value: props.continents},
+            {label: 'Regions', value: props.region},
+            {label: 'Subregion', value: props.subregion},
+            {label: 'Area', value: props.area},
+        ]
+    }, [props]);
+
+    const country_demographic = useMemo(() => {
+        return [
+            {label: 'Population', value: props.population},
+            {label: 'Currency', value: props.currency},
+            {label: 'Resident', value: props.resident},
+            {label: 'Languages', value: props.language}
+        ]
+    }, [props]);
 
     return <Box sx={CountryStyle.container}>
         <Button 
@@ -40,8 +47,9 @@ const Country: FC<CountryComponentInterface> = (props) => {
                 <Box component="img" src={props.flag.link} alt={props.flag.alt} />
             </Box>
             <Box>
+                <Typography variant="subtitle1">Geography</Typography>
                 <List>
-                    {items.map((item, index) => {
+                    {country_geography.map((item, index) => {
                         return  <ListItem key={index} disablePadding>
                                     <ListItemText
                                         primary={
@@ -60,10 +68,22 @@ const Country: FC<CountryComponentInterface> = (props) => {
                 </List>
             </Box>
             <Box>
+                <Typography variant="subtitle1">Demographic</Typography>
                 <List>
-                    {[].map((_, index) => {
+                    {country_demographic.map((item, index) => {
                         return  <ListItem key={index} disablePadding>
-                                    <ListItemText />
+                                    <ListItemText
+                                        primary={
+                                            <Typography variant="body1" component="span" sx={{ fontWeight: 'bold', marginRight: 1 }}>
+                                                {item.label}:
+                                            </Typography>
+                                        }
+                                        secondary={
+                                            <Typography variant="body2" component="span" color="text.secondary">
+                                                {item.value}
+                                            </Typography>
+                                        }
+                                    />
                                 </ListItem>
                     })}
                 </List>
