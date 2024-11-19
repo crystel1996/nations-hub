@@ -2,6 +2,7 @@ import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
 import CountryStyle from "@nations-hub/components/Country/CountryStyle";
 import { CountryComponentInterface } from "@nations-hub/components/Country/interface";
+import Loading from "@nations-hub/components/UI/Loading/Loading";
 import { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -32,6 +33,10 @@ const Country: FC<CountryComponentInterface> = (props) => {
             {label: 'Languages', value: props.language}
         ]
     }, [props]);
+
+    if(props.loading) {
+        return <Loading />
+    }
 
     return <Box sx={CountryStyle.container}>
         <Button 

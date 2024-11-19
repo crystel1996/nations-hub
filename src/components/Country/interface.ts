@@ -1,4 +1,5 @@
 export interface CountryComponentInterface {
+    loading: boolean;
     flag: {
         link: string;
         alt: string;
@@ -6,7 +7,7 @@ export interface CountryComponentInterface {
     name: string;
     continents: string;
     population: number;
-    area:number;
+    area:string;
     region: string;
     subregion: string;
     currency: string;

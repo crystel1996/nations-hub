@@ -59,8 +59,13 @@ const Country: FC<CountryInterface> = () => {
         });
 
         let language: CountryComponentInterface['language'] = '';
-        Object.keys(country?.languages ?? {}).forEach((item) => {
-            language += `${country?.languages?.[item] ?? ''}  `;
+        Object.keys(country?.languages ?? {}).forEach((item, index) => {
+            if (index === 0) {
+                language += `${country?.languages?.[item] ?? ''}  `;
+            } else {
+                language += `, ${country?.languages?.[item] ?? ''}  `;
+            }
+            
         });
 
         return {
@@ -71,18 +76,21 @@ const Country: FC<CountryInterface> = () => {
             name: country?.name?.common ?? '-',
             continents: country?.continents?.[0] ?? '-',
             population: country?.population ?? 0,
-            area: country?.area ?? 0,
+            area: `${country?.area ?? 0} km²`,
             region: country?.region ?? '-',
             subregion: country?.subregion ?? '-',
             currency: currency,
             resident,
-            language
+            language,
+            loading: getCountry.status === 'loading'
         }
-    }, [getCountry.country]);
+    }, [getCountry.country, getCountry.status]);
 
     return <MainLayout {...headerProps}>
         <Box sx={CountryStyle.container}>
+            
             <CountryComponent {...countryComponentProps} />
+            
         </Box>
     </MainLayout>
 }

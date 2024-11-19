@@ -1,8 +1,9 @@
-import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import CountriesStyle from "@nations-hub/components/Countries/CountriesStyle";
 import { CountriesComponentInterface } from "@nations-hub/components/Countries/interface";
 import SearchLayout from "@nations-hub/components/Layout/SearchLayout/SearchLayout";
 import CardComponent from "@nations-hub/components/UI/Card/Card";
+import Loading from "@nations-hub/components/UI/Loading/Loading";
 import Sorting from "@nations-hub/components/UI/Sorting/Sorting";
 import {  COUNTRY_ROUTE_DINAMICALLY } from "@nations-hub/pages/Country/routes";
 import { FC } from "react";
@@ -11,9 +12,7 @@ const Countries: FC<CountriesComponentInterface> = (props) => {
 
     return <SearchLayout>
         {props.loading && (
-            <Box sx={CountriesStyle.loading}>
-                <CircularProgress />
-            </Box>
+            <Loading />
         )}
         <Box sx={CountriesStyle.container}>
             <Box py={2}>
