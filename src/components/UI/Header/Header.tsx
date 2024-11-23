@@ -44,7 +44,7 @@ const Header: FC<HeaderComponentInterface> = (props) => {
           {(props.menus || []).map((menu) => (
             <Link
               key={menu.link}
-              href={menu.label}
+              href={menu.link}
               color={theme.palette.secondary.main}
               underline="none"
               sx={{ margin: '0 1rem', fontSize: '1rem', fontWeight: 500 }}

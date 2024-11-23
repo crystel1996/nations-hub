@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import MainLayout from "@nations-hub/components/Layout/MainLayout/MainLayout";
 import { HeaderComponentInterface } from "@nations-hub/components/UI/Header/interface";
 import MENU from "@nations-hub/pages/Country/Constant/menu";
@@ -82,17 +82,14 @@ const Country: FC<CountryInterface> = () => {
             currency: currency,
             resident,
             language,
+            capital: country?.capital?.[0] ?? '',
             loading: getCountry.status === 'loading'
         }
     }, [getCountry.country, getCountry.status]);
 
     return <MainLayout {...headerProps}>
-        <Container>
-            <Box sx={CountryStyle.container}>
-                
-                <CountryComponent {...countryComponentProps} />
-                
-            </Box>
+        <Container sx={CountryStyle.container}>
+            <CountryComponent {...countryComponentProps} />
         </Container>
     </MainLayout>
 }

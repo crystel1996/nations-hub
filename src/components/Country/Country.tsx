@@ -2,6 +2,7 @@ import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
 import CountryStyle from "@nations-hub/components/Country/CountryStyle";
 import { CountryComponentInterface } from "@nations-hub/components/Country/interface";
+import EmbeddedMap from "@nations-hub/components/UI/EmbeddedMap/EmbeddedMap";
 import Loading from "@nations-hub/components/UI/Loading/Loading";
 import { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const Country: FC<CountryComponentInterface> = (props) => {
             {label: 'Regions', value: props.region},
             {label: 'Subregion', value: props.subregion},
             {label: 'Area', value: props.area},
+            {label: 'Capital', value: props.capital}
         ]
     }, [props]);
 
@@ -93,6 +95,9 @@ const Country: FC<CountryComponentInterface> = (props) => {
                     })}
                 </List>
             </Box>
+        </Box>
+        <Box py={2}>
+            <EmbeddedMap title={`Map of ${props.name}`} countryName={props.name} zoom={5} />
         </Box>
     </Box>
 }

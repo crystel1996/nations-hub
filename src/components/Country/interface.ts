@@ -13,4 +13,5 @@ export interface CountryComponentInterface {
     currency: string;
     resident: string;
     language: string;
+    capital?: string;
 }

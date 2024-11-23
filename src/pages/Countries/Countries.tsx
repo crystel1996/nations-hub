@@ -114,7 +114,7 @@ const Countries = () => {
         if (listCountries.length === 0) {
             return true
         }
-        return listCountries.length <= getCountries.countriesPerPage
+        return listCountries.length < getCountries.countriesPerPage
     }, [getCountries.countriesPerPage, listCountries.length]);
 
     return <MainLayout menus={props.menus}>
