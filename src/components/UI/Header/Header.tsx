@@ -27,10 +27,13 @@ const Header: FC<HeaderComponentInterface> = (props) => {
         {/* Logo or Brand Name */}
         <Typography 
           variant="h6" 
+          component='a'
+          href="/"
           sx={{ 
             flexGrow: 1, 
             display: { md: 'block' },
             color: theme.palette.text.secondary,
+            textDecoration: 'none'
           }}
         >
           Nations Hub

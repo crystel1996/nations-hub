@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import CountriesComponent from "@nations-hub/components/Countries/Countries";
 import { CountriesComponentInterface } from "@nations-hub/components/Countries/interface";
 import MainLayout from "@nations-hub/components/Layout/MainLayout/MainLayout";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { CountryStyle } from "@nations-hub/pages/Countries/CountryStyle";
 import { FetchAllCountriesDataInterface } from "@nations-hub/store/action/country/interface";
 import { SortingInterface } from "@nations-hub/components/UI/Sorting/interface";
@@ -114,19 +114,21 @@ const Countries = () => {
         if (listCountries.length === 0) {
             return true
         }
-        return getCountries.countries.length <= getCountries.countriesPerPage
-    }, [getCountries.countries.length, getCountries.countriesPerPage, listCountries.length]);
+        return listCountries.length <= getCountries.countriesPerPage
+    }, [getCountries.countriesPerPage, listCountries.length]);
 
     return <MainLayout menus={props.menus}>
-        <Box sx={CountryStyle.content}>
-            <CountriesComponent 
-                loading={getCountries.status === 'loading'} 
-                countries={listCountries} 
-                onLoadMore={loadMoreCountries}
-                onSorting={handleSortingCountries}
-                isAllDisplay={isAllDisplay}
-            />
-        </Box>
+        <Container>
+            <Box sx={CountryStyle.content}>
+                <CountriesComponent 
+                    loading={getCountries.status === 'loading'} 
+                    countries={listCountries} 
+                    onLoadMore={loadMoreCountries}
+                    onSorting={handleSortingCountries}
+                    isAllDisplay={isAllDisplay}
+                />
+            </Box>
+        </Container>
     </MainLayout>
 }
 

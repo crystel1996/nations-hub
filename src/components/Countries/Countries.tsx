@@ -18,7 +18,7 @@ const Countries: FC<CountriesComponentInterface> = (props) => {
             <Box py={2}>
                 <Sorting field='name' onSortData={props.onSorting} />
             </Box>
-            <Grid container spacing={2} justifyContent="center">
+            <Grid container spacing={2}>
                 {!props.loading && (
                     <>
                         {(props.countries || []).map((country) => (

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import HomeComponent from "@nations-hub/components/Home/Home";
 import MainLayout from "@nations-hub/components/Layout/MainLayout/MainLayout";
 import { HeaderComponentInterface } from "@nations-hub/components/UI/Header/interface";
@@ -12,9 +12,11 @@ const Home = () => {
     };
 
     return <MainLayout menus={props.menus}>
-        <Box sx={HomeStyle}>
-            <HomeComponent />
-        </Box>
+        <Container>
+            <Box sx={HomeStyle}>
+                <HomeComponent />
+            </Box>
+        </Container>
     </MainLayout>
 }
 

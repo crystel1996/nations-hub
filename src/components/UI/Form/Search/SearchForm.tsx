@@ -11,11 +11,20 @@ const SearchForm: FC<SearchFormInterface> = (props) => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const { register, handleSubmit } = useForm<SearchFormDataInterface>({
+    const { register, handleSubmit, getValues, setValue } = useForm<SearchFormDataInterface>({
         defaultValues: {
             search: props.defaultValue ?? ''
         }
     });
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setValue(name as keyof SearchFormDataInterface, value); // Update the value in RHF
+        const currentValue = getValues(name as keyof SearchFormDataInterface); // Get the updated value
+        if (currentValue === '') {
+            props.onSubmit(currentValue);
+        }
+    };
 
     const onSubmit = (data: any) => {
         props.onSubmit(data?.search);
@@ -34,6 +43,7 @@ const SearchForm: FC<SearchFormInterface> = (props) => {
                     size="small"
                     fullWidth={isSmallScreen}
                     sx={SearchFormInputStyle({ isSmallScreen })}
+                    onChange={handleInputChange}
                 />
 
                 {/* Submit Button */}
